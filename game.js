@@ -66,11 +66,11 @@ particles = this.add.particles('stripe');
         }
     if (cursors.left.isDown)
     {
-      player.setVelocityX(-240); /
+      player.setVelocityX(-240); 
     }
     else if (cursors.right.isDown)
     {
-      player.setVelocityX(240); /
+      player.setVelocityX(240); 
     }
     else
     {   
