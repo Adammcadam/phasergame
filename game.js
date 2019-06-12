@@ -10,13 +10,14 @@ let gameOptions = {
   height: 640,
   gravity: 800
 }
+let Phaser;
 
 class JumpScene extends Phaser.Scene {
   constructor() {
     super({ key: 'JumpScene' })
   }
 
-  preload(){
+  preload() {
     this.load.image('platform', '');
     this.load.image('stripe', '');
     this.load.spritesheet("player", "", {
