@@ -10,7 +10,6 @@ let gameOptions = {
   height: 640,
   gravity: 800
 }
-let Phaser;
 
 class JumpScene extends Phaser.Scene {
   constructor() {
@@ -120,7 +119,7 @@ let config = {
       gravity: { y: gameOptions.gravity },
     }
   },
-  scene: JumpScene,
+  scene: [JumpScene]
 };
 
 game = new Phaser.Game(config);
