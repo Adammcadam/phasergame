@@ -1,15 +1,16 @@
-let game;
-let platforms;  
-let player; 
-let cursors;
-let platformCount = 0;
-let emitter;
-let particles;
-let gameOptions = {
+var game;
+var platforms;  
+var player; 
+var cursors;
+var platformCount = 0;
+var emitter;
+var gameOptions = {
   width: 480,
   height: 640,
   gravity: 800
 }
+
+
 
 class JumpScene extends Phaser.Scene {
   constructor() {
@@ -17,16 +18,15 @@ class JumpScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('platform', '');
-    this.load.image('stripe', '');
-    this.load.spritesheet("player", "", {
+    this.load.image('platform', 'assets/platform.png');
+    this.load.spritesheet("player", "player/idle/anim1.png", {
       frameWidth: 72,
       frameHeight: 90
     });
   }
 
   create() {
-    const graphics = this.add.graphics();
+    var graphics = this.add.graphics();
     graphics.fillGradientStyle(0xdadaff, 0x6cfafa, 0xfccaff, 0xdadaff, 1);
     graphics.fillRect(0, 0, gameOptions.width, gameOptions.height);
     this.physics.world.setBounds(0, 0, 480, 640);
@@ -57,7 +57,6 @@ class JumpScene extends Phaser.Scene {
       frameRate: 10,
       repeat: -1,
     });
-particles = this.add.particles('stripe');
   }
 
   update(){
@@ -108,7 +107,7 @@ particles = this.add.particles('stripe');
   }
 }
 
-let config = {
+var config = {
   type: Phaser.AUTO,
   width: gameOptions.width,
   height: gameOptions.height,
@@ -126,7 +125,7 @@ game = new Phaser.Game(config);
 
 
 function updateY(platform){
-  let delta = Math.floor(gameOptions.height/2) - player.y; 
+  var delta = Math.floor(gameOptions.height/2) - player.y; 
 
   if(delta > 0){ 
     platform.y += delta/30; 
