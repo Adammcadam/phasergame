@@ -28,17 +28,17 @@ var blockBreaker = new Phaser.Class({
         //  Enables world boundary, but disables the floor
         this.physics.world.setBoundsCollision(true, true, true, false);
 
-        //  Create the blocks in a 10x6 grid
+        //  Create the blocks in a 10x7 grid
         this.bricks = this.physics.add.staticGroup({
-            key: 'assets', frame: [ 'red1', 'red2', 'green1', 'green2', 'blue1', 'blue2' ],
+            key: 'assets', frame: [ 'red', 'yellow2', 'yellow1', 'green', 'blue', 'purple1', 'purple2' ],
             frameQuantity: 10,
-            gridAlign: { width: 10, height: 6, cellWidth: 64, cellHeight: 32, x: 112, y: 100 }
+            gridAlign: { width: 10, height: 7, cellWidth: 64, cellHeight: 32, x: 112, y: 100 }
         });
 
-        this.ball = this.physics.add.image(400, 500, 'assets', 'ball2').setCollideWorldBounds(true).setBounce(1);
+        this.ball = this.physics.add.image(400, 500, 'assets', 'ball').setCollideWorldBounds(true).setBounce(1);
         this.ball.setData('onPaddle', true);
 
-        this.paddle = this.physics.add.image(400, 550, 'assets', 'paddle2').setImmovable();
+        this.paddle = this.physics.add.image(400, 550, 'assets', 'paddle').setImmovable();
 
         //  The colliders
         this.physics.add.collider(this.ball, this.bricks, this.hitBrick, null, this);
@@ -115,7 +115,6 @@ var blockBreaker = new Phaser.Class({
         else
         {
             //  Ball is perfectly in the middle
-            //  Add a little random X to stop it bouncing straight up!
             ball.setVelocityX(2 + Math.random() * 8);
         }
     },
