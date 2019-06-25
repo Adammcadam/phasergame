@@ -15,7 +15,7 @@ var blockBreaker = new Phaser.Class({
 
     preload: function ()
     {
-        this.load.image('background', '')
+        this.load.image('background', 'assets/background2.png')
         this.load.atlas('assets', 'assets/blockbreaker.png', 'assets/blockbreaker.json');
     },
 
