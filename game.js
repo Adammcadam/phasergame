@@ -1,139 +1,144 @@
-var game;
-var platforms;  
-var player; 
-var cursors;
-var platformCount = 0;
-var emitter;
-var gameOptions = {
-  width: 480,
-  height: 640,
-  gravity: 800
-}
+var blockBreaker = new Phaser.Class({
 
+    Extends: Phaser.Scene,
 
+    initialize:
 
-class JumpScene extends Phaser.Scene {
-  constructor() {
-    super({ key: 'JumpScene' })
-  }
-
-  preload() {
-    this.load.image('platform', 'assets/platform.png');
-    this.load.spritesheet("player", "player/idle/anim1.png", {
-      frameWidth: 72,
-      frameHeight: 90
-    });
-  }
-
-  create() {
-    var graphics = this.add.graphics();
-    graphics.fillGradientStyle(0xdadaff, 0x6cfafa, 0xfccaff, 0xdadaff, 1);
-    graphics.fillRect(0, 0, gameOptions.width, gameOptions.height);
-    this.physics.world.setBounds(0, 0, 480, 640);
-    platforms = this.physics.add.group({
-      allowGravity: false,
-      immovable: true,
-    });
-
-    for (let i = 0; i < 8; i++) {
-      let randomX = Math.floor(Math.random() * 400) + 24;
-      platforms.create(randomX, i * 80, 'platform').setScale(.5);
-    }
-
-    player = this.physics.add.sprite(100, 450, 'player').setScale(.5);
-    player.setBounce(1);
-    player.setCollideWorldBounds(true);
-    player.body.checkCollision.up = false;
-    player.body.checkCollision.left = false;
-    player.body.checkCollision.right = false;
-
-  
-    this.physics.add.collider(player, platforms);
-
-    cursors = this.input.keyboard.createCursorKeys();
-    this.anims.create({
-      key: 'jump',
-      frames: this.anims.generateFrameNumbers('player', { start: 2, end: 3}),
-      frameRate: 10,
-      repeat: -1,
-    });
-  }
-
-  update(){
-    if (player.body.touching.down) {
-        this.cameras.main.shake(100, .004);
-        }
-    if (cursors.left.isDown)
+    function blockBreaker ()
     {
-      player.setVelocityX(-240); 
-    }
-    else if (cursors.right.isDown)
+        Phaser.Scene.call(this, { key: 'blockBreaker' });
+
+        this.bricks;
+        this.paddle;
+        this.ball;
+    },
+
+    preload: function ()
     {
-      player.setVelocityX(240); 
-    }
-    else
-    {   
-      player.setVelocityX(0);
-    }
+        this.load.image('background', '')
+        this.load.atlas('assets', 'assets/blockbreaker.png', 'assets/blockbreaker.json');
+    },
 
-    if (player.body.touching.down) {
-      player.setVelocityY(-500);
-    }
+    create: function ()
+    {
+        //load the background in 
+        this.add.image(0, 0, 'background').setOrigin(0, 0)
+        
+        
+        //  Enables world boundary, but disables the floor
+        this.physics.world.setBoundsCollision(true, true, true, false);
 
+        //  Create the blocks in a 10x6 grid
+        this.bricks = this.physics.add.staticGroup({
+            key: 'assets', frame: [ 'red1', 'red2', 'green1', 'green2', 'blue1', 'blue2' ],
+            frameQuantity: 10,
+            gridAlign: { width: 10, height: 6, cellWidth: 64, cellHeight: 32, x: 112, y: 100 }
+        });
 
-    if (player.body.y <  gameOptions.height/2) {
-      platforms.children.iterate(updateY, this);
-    }
-		if (platformCount > 10 && !emitter) {
-        emitter = particles.createEmitter({                                                                                   
-  x: { min: 0, max: gameOptions.width },                                                                              
-  y: gameOptions.height + 10,                                                                                         
-  lifespan: 2500,                                                                                                     
-  speedY: { min: -300, max: -500 },                                                                                   
-  scale: .5,                                                                                                          
-  quantity: 5,                                                                                                        
-  blendMode: 'ADD'                                                                                                    
-}); 
-        } 
-    
-  
-    player.anims.play('jump', true);
-    
-    if (cursors.left.isDown) {
-        player.flipX === true;
-        } else if (cursors.right.isDown) {
-          player.flipX === false;
+        this.ball = this.physics.add.image(400, 500, 'assets', 'ball2').setCollideWorldBounds(true).setBounce(1);
+        this.ball.setData('onPaddle', true);
+
+        this.paddle = this.physics.add.image(400, 550, 'assets', 'paddle2').setImmovable();
+
+        //  The colliders
+        this.physics.add.collider(this.ball, this.bricks, this.hitBrick, null, this);
+        this.physics.add.collider(this.ball, this.paddle, this.hitPaddle, null, this);
+
+        //  Input events
+        this.input.on('pointermove', function (pointer) {
+
+            //  Keep the paddle within the game
+            this.paddle.x = Phaser.Math.Clamp(pointer.x, 52, 748);
+
+            if (this.ball.getData('onPaddle'))
+            {
+                this.ball.x = this.paddle.x;
+            }
+
+        }, this);
+
+        this.input.on('pointerup', function (pointer) {
+
+            if (this.ball.getData('onPaddle'))
+            {
+                this.ball.setVelocity(-75, -300);
+                this.ball.setData('onPaddle', false);
+            }
+
+        }, this);
+    },
+
+    hitBrick: function (ball, brick)
+    {
+        brick.disableBody(true, true);
+
+        if (this.bricks.countActive() === 0)
+        {
+            this.resetLevel();
         }
-  }
-}
+    },
+
+    resetBall: function ()
+    {
+        this.ball.setVelocity(0);
+        this.ball.setPosition(this.paddle.x, 500);
+        this.ball.setData('onPaddle', true);
+    },
+
+    resetLevel: function ()
+    {
+        this.resetBall();
+
+        this.bricks.children.each(function (brick) {
+
+            brick.enableBody(false, 0, 0, true, true);
+
+        });
+    },
+
+    hitPaddle: function (ball, paddle)
+    {
+        var diff = 0;
+
+        if (ball.x < paddle.x)
+        {
+            //  Ball is on the left-hand side of the paddle
+            diff = paddle.x - ball.x;
+            ball.setVelocityX(-10 * diff);
+        }
+        else if (ball.x > paddle.x)
+        {
+            //  Ball is on the right-hand side of the paddle
+            diff = ball.x -paddle.x;
+            ball.setVelocityX(10 * diff);
+        }
+        else
+        {
+            //  Ball is perfectly in the middle
+            //  Add a little random X to stop it bouncing straight up!
+            ball.setVelocityX(2 + Math.random() * 8);
+        }
+    },
+
+    update: function ()
+    {
+        if (this.ball.y > 600)
+        {
+            this.resetBall();
+        }
+    }
+
+});
 
 var config = {
-  type: Phaser.AUTO,
-  width: gameOptions.width,
-  height: gameOptions.height,
-  backgroundColor: '#4599ff',
-  physics: {
-    default: 'arcade',
-    arcade: {
-      gravity: { y: gameOptions.gravity },
+    type: Phaser.WEBGL,
+    width: 800,
+    height: 600,
+    parent: 'phaser-example',
+    scene: [ blockBreaker ],
+    physics: {
+        default: 'arcade'
     }
-  },
-  scene: [JumpScene]
 };
 
-game = new Phaser.Game(config);
-
-
-function updateY(platform){
-  var delta = Math.floor(gameOptions.height/2) - player.y; 
-
-  if(delta > 0){ 
-    platform.y += delta/30; 
-  }
-
-  if(platform.y > 640){
-    platform.y = -platform.height;
-    platform.x = Math.floor(Math.random() * 400) + 24;
-    platformCount += 1;
-  }
-}
+var game = new Phaser.Game(config);
