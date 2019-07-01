@@ -21,7 +21,6 @@ var blockBreaker = new Phaser.Class({
 
     create: function ()
     {
-        //load the background in 
         this.add.image(0, 0, 'background').setOrigin(0, 0)
         
         
@@ -44,7 +43,7 @@ var blockBreaker = new Phaser.Class({
         this.physics.add.collider(this.ball, this.bricks, this.hitBrick, null, this);
         this.physics.add.collider(this.ball, this.paddle, this.hitPaddle, null, this);
 
-        //  Input events
+        //  Keyboard Input events
         this.input.on('pointermove', function (pointer) {
 
             //  Keep the paddle within the game
@@ -153,74 +152,6 @@ var blockBreaker = new Phaser.Class({
 
 });
 
-var highScore = new Phaser.Class({
-    
-    Extends: Phaser.scene,
-    
-    initialize:
-    
-    function constructor ()
-    {
-        super({ key: 'Highscore', active: true });
-        
-        this.player.text;
-    },
-    
-    preload: function () 
-    {
-        this.load.image('block', 'block.png');
-        this.load.image('rub', 'rub.png');
-        this.load.image('end', 'end.png');
-
-        this.load.bitmapFont('arcade', 'arcade.png', 'arcade.xml');
-    },
-    
-    create: function () 
-    {
-        this.add.bitmapText(100, 260, 'arcade', 'RANK  SCORE   NAME').setTint(0xff00ff);
-        this.add.bitmapText(100, 310, 'arcade', '1ST   50000').setTint(0xff0000);
-
-        this.playerText = this.add.bitmapText(580, 310, 'arcade', '').setTint(0xff0000);
-
-        this.input.keyboard.enabled = false;
-
-        this.scene.launch('InputPanel');
-
-        let panel = this.scene.get('InputPanel');
-
-        panel.events.on('updateName', this.updateName, this);
-        panel.events.on('submitName', this.submitName, this);
-    },
-    
-    submitName: function () 
-    {
-        this.scene.stop('InputPanel');
-
-        this.add.bitmapText(100, 360, 'arcade', '2ND   40000    ANT').setTint(0xff8200);
-        this.add.bitmapText(100, 410, 'arcade', '3RD   30000    .-.').setTint(0xffff00);
-        this.add.bitmapText(100, 460, 'arcade', '4TH   20000    BOB').setTint(0x00ff00);
-        this.add.bitmapText(100, 510, 'arcade', '5TH   10000    ZIK').setTint(0x00bfff);
-    },
-    
-    updateName: function (name) 
-    {
-        this.playerText.setText(name);
-    }
-    
-});
-
-var inputPanel = new Phaser.Class({
-    
-    Extends: Phaser.scene,
-    
-    initialize:
-    
-    function constructor()
-    {
-        
-    }
-});
-
 
 var score = 0;
 var scoreText;
@@ -230,11 +161,10 @@ var livesText;
 
 
 var config = {
-    type: Phaser.WEBGL,
+    type: Phaser.AUTO,
     width: 800,
     height: 600,
-    parent: 'phaser-example',
-    scene: [ blockBreaker, highScore, inputPanel ],
+    scene: [ blockBreaker ],
     physics: {
         default: 'arcade'
     }
