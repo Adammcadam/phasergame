@@ -1,4 +1,4 @@
-var blockBreaker = new Phaser.Class({
+let blockBreaker = new Phaser.Class({
 
     Extends: Phaser.Scene,
 
@@ -100,7 +100,7 @@ var blockBreaker = new Phaser.Class({
 
     hitPaddle: function (ball, paddle)
     {
-        var diff = 0;
+        let diff = 0;
 
         if (ball.x < paddle.x)
         {
@@ -153,14 +153,14 @@ var blockBreaker = new Phaser.Class({
 });
 
 
-var score = 0;
-var scoreText;
+let score = 0;
+let scoreText;
 
-var lives = 0;
-var livesText;
+let lives = 0;
+let livesText;
 
 
-var config = {
+let config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
@@ -170,4 +170,4 @@ var config = {
     }
 };
 
-var game = new Phaser.Game(config);
+let game = new Phaser.Game(config);
