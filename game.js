@@ -67,7 +67,8 @@ var blockBreaker = new Phaser.Class({
 
         }, this);
         
-        scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+        scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
+        livesText = this.add.text(625, 16, 'Lives: 3', { fontSize: '32px', fill: '#000' });
     },
 
     hitBrick: function (ball, brick)
@@ -135,6 +136,14 @@ var blockBreaker = new Phaser.Class({
          
          score += 10;
          scoreText.setText('Score: ' + score);
+    },
+    
+    removeLives: function () 
+    {
+        ball.disableBody(true, true);
+        
+        lives -= 1;
+        livesText.setText('Lives: ' + lives);
     }
 
 });
@@ -142,6 +151,8 @@ var blockBreaker = new Phaser.Class({
 var score = 0;
 var scoreText;
 
+var lives = 0;
+var livesText;
 
 
 var config = {
