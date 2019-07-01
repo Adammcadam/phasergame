@@ -66,6 +66,8 @@ var blockBreaker = new Phaser.Class({
             }
 
         }, this);
+        
+        scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
     },
 
     hitBrick: function (ball, brick)
@@ -125,9 +127,22 @@ var blockBreaker = new Phaser.Class({
         {
             this.resetBall();
         }
+    },
+    
+    hitBrickScore: function (ball, brick)
+    {
+         brick.disableBody(true, true);
+         
+         score += 10;
+         scoreText.setText('Score: ' + score);
     }
 
 });
+
+var score = 0;
+var scoreText;
+
+
 
 var config = {
     type: Phaser.WEBGL,
