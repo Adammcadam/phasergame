@@ -15,13 +15,13 @@ let blockBreaker = new Phaser.Class({
 
     preload: function ()
     {
-        this.load.image('background', 'assets/background2.png')
+        this.load.image('background', 'assets/sunsetBackground.png')
         this.load.atlas('assets', 'assets/blockbreaker.png', 'assets/blockbreaker.json');
     },
 
     create: function ()
     {
-        this.add.image(0, 0, 'background').setOrigin(0, 0)
+        this.add.image(0, 0, 'background').setOrigin(0);
         
         
         //  Enables world boundary, but disables the floor
@@ -66,8 +66,8 @@ let blockBreaker = new Phaser.Class({
 
         }, this);
         
-        scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
-        livesText = this.add.text(625, 16, 'Lives: 3', { fontSize: '32px', fill: '#000' });
+        scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#ffffff' });
+        livesText = this.add.text(625, 16, 'Lives: 3', { fontSize: '32px', fill: '#ffffff' });
     },
 
     hitBrick: function (ball, brick)
