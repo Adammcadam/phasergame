@@ -9,8 +9,8 @@ class SceneMain extends Phaser.Scene {
     }
     create () 
     {
-        // this.background = this.add.image(0, 0, "background").setOrigin(0, 0)
-        // this.background.alpha = .5;
+        this.background = this.add.image(0, 0, "background").setOrigin(0, 0)
+        this.background.alpha = .5;
         
 
     }
