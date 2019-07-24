@@ -167,7 +167,8 @@ let config = {
     scene: [ blockBreaker ],
     physics: {
         default: 'arcade'
-    }
+    },
+    
 };
 
 let game = new Phaser.Game(config);
