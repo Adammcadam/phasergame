@@ -114,18 +114,19 @@ class SceneMain extends Phaser.Scene {
     
     hitBrickScore(ball, brick)
     {
-         brick.disableBody(true, true);
+         if (brick.disableBody(true, true)) {
+            score += 10;
+         };
          
-         score += 10;
-         scoreText.setText('Score: ' + score);
+         
     }
     
     removeLives()
     {
-        this.ball.disableBody(true, true);
+        if(this.ball.disableBody(true, true)) {
+            lives -= 1;
+        };
         
-        lives -= 1;
-        livesText.setText('Lives: ' + lives);
     }
     
     update() 
