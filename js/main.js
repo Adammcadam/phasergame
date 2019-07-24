@@ -7,7 +7,13 @@ window.onload = function()
         height: 640,
         parent: 'phaser-game',
         scene: [SceneMain],
+        physics: {
+            default: 'arcade',
+            arcade: {
+                debug: true
+            }
+        }
     }
     
-    var game = new Phaser.Game(config);
+    game = new Phaser.Game(config);
 }
