@@ -6,7 +6,7 @@ window.onload = function()
         width: 800,
         height: 600,
         parent: 'phaser-game',
-        scene: [SceneMain],
+        scene: [SceneMain, Score],
         physics: {
             default: 'arcade',
             arcade: {
