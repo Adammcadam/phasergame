@@ -54,6 +54,13 @@ class SceneMain extends Phaser.Scene {
 
         }, this);
         
+        let score = 0;
+        let scoreText;
+        
+        let lives = 3;
+        let livesText;
+
+        
         scoreText = this.add.text(16, 16, 'Score: ' + score, { fontSize: '32px', fill: '#ffffff' });
         livesText = this.add.text(625, 16, 'Lives: ' + lives, { fontSize: '32px', fill: '#ffffff' });
 
@@ -142,9 +149,3 @@ class SceneMain extends Phaser.Scene {
     
     
 }
-
-let score = 0;
-let scoreText;
-
-let lives = 3;
-let livesText;
