@@ -1,4 +1,5 @@
 var game;
+
 window.onload = function()
 {
     var config = {
