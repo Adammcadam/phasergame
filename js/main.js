@@ -17,5 +17,3 @@ window.onload = function()
     
     game = new Phaser.Game(config);
 }
-
-console.log(brick.disableBody);

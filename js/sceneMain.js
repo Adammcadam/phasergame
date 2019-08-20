@@ -1,4 +1,8 @@
 class SceneMain extends Phaser.Scene {
+    // var score = 0;
+    // var scoreText;
+    
+    
     constructor() {
         super('SceneMain');
     }
@@ -54,21 +58,25 @@ class SceneMain extends Phaser.Scene {
 
         }, this);
         
-        let score = 0;
+        let score = 0
         let scoreText;
+        
         
         let lives = 3;
         let livesText;
 
         
-        scoreText = this.add.text(16, 16, 'Score: ' + score, { fontSize: '32px', fill: '#ffffff' });
+        scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#ffffff' });
         livesText = this.add.text(625, 16, 'Lives: ' + lives, { fontSize: '32px', fill: '#ffffff' });
 
     }
     
-    hitBrick(ball, brick) 
+    hitBrick(ball, bricks) 
     {
-        brick.disableBody(true, true);
+        bricks.disableBody(true, true);
+        
+        this.score += 100
+        this.scoreText.setText('Score: ' + score);
 
         if (this.bricks.countActive() === 0)
         {
@@ -118,15 +126,6 @@ class SceneMain extends Phaser.Scene {
         }
     }
     
-    
-    score(ball, brick)
-    {
-        brick.disableBody(true, true);
-        
-        score += 100;
-        scoreText.setText('Score: ' + score);
-         
-    }
     
     removeLives()
     {
