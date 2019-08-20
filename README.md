@@ -2,7 +2,7 @@
 
 A single page which displays a game i've called Block Breaker. The game uses phaser.js to render the game on the website.
 
-The current deployment of my game can be found here: (https://adammcadam.github.io/phasergame/)
+The current deployment of my game can be found here: https://adammcadam.github.io/phasergame/
 
 ## UX
 
@@ -34,4 +34,6 @@ to be added!
 ## Technologies Used
 
 The following technologies were used in the design and build of this project.
+
+[Balsamiq][https://balsamiq.com/]
 
