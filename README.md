@@ -85,12 +85,18 @@ The site was developed using the cloud9 IDE and uses git for version control whi
 
 To deploy this project, I took the following initial steps:
 
-From my GitHub page I clicked on 'Repositories' and selected the required repository, in this case 'superhero-dashboard'
+From my GitHub page I clicked on 'Repositories' and selected the required repository, in this case 'phasergame'
+
 I then clicked on the 'settings' option, located on the top horizontal menu bar
+
 Next, I scrolled down the page to the GitHub Pages section and located the dropdown box under 'Source'
+
 From there I selected the 'master branch'
+
 GitHub takes you back to the top of the page to allow you to rename the repository if desired. I kept it the same.
+
 These steps resulted in the finished site being deployed at https://adammcadam.github.io/phasergame/.
+
 Every subsequent push to GitHub on the master branch updates the deployed site to match.
 
 ## Credits
