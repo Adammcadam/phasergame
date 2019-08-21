@@ -22,9 +22,10 @@ to be added!
 
 ### Current Features
 
-> Feature 1
-> Feature 2
-> Feature 3
+> User score
+> User lives
+> Bricks break on contact with ball
+> How to play modal
 
 ### Future Features
 
