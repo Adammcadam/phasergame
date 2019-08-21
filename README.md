@@ -29,9 +29,12 @@ to be added!
 ### Future Features
 
 > Leaderboard/Scoreboard
-I would like to implement a leaderboard in the future to show everyone how well they've done compared to others.
 
-> Future Feature 2
+> More Levels/Different Bricks
+
+> More animated bricks
+
+> Power Ups/Upgrades
 
 ## Technologies Used
 
@@ -89,4 +92,14 @@ From there I selected the 'master branch'
 GitHub takes you back to the top of the page to allow you to rename the repository if desired. I kept it the same.
 These steps resulted in the finished site being deployed at https://adammcadam.github.io/phasergame/.
 Every subsequent push to GitHub on the master branch updates the deployed site to match.
+
+## Credits
+
+### Content
+
+The bricks, paddle and ball are taken from phaser.io 
+
+### Acknowledegments 
+
+I also took most of my inspiration from phaser.io for this game
 
