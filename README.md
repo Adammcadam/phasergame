@@ -28,7 +28,9 @@ to be added!
 
 ### Future Features
 
-> Future Feature 1
+> Leaderboard/Scoreboard
+I would like to implement a leaderboard in the future to show everyone how well they've done compared to others.
+
 > Future Feature 2
 
 ## Technologies Used
