@@ -36,7 +36,7 @@ to be added!
 
 > More Levels/Different Bricks
 
-> More animated bricks
+> Animated bricks
 
 > Power Ups/Upgrades
 
@@ -60,9 +60,6 @@ The following technologies were used in the design and build of this project.
 
 #### [Adobe Photoshop CC](https://www.photoshop.com/)
 - Photoshop was used to create and edit the background image which appears on the game itself.
-
-#### [Font Awesome](https://origin.fontawesome.com/)
-- TBC
 
 #### [Git & GitHub](https://github.com/)
 - Git used for version control. GitHub used as a remote repository and the hosting of this site.
