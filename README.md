@@ -79,9 +79,6 @@ The following physical devices tested with no issues found.
 - Apple iPad Pro
 - Apple MacBook Air
 
-### Known Issues
-
-tbc
 
 ## Deployment
 
