@@ -16,7 +16,7 @@ This game and website is designed to be as simple and intuitive as possible. Hen
 
 ## Wireframes
 
-The first wireframe is the overall look for the site itself 
+The first wireframe is the overall look for the site itself. The second being the modal used to describe how to play 
 
 <img src="/assets/wireframes/website-wireframe.png" align=top width=320>&nbsp;<img src="/assets/wireframes/modal-wireframe.png" align=top width=150>
 
